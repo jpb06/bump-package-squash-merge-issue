@@ -1,1 +1,1 @@
-export const cool = false
+export const cool = true
