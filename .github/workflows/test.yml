@@ -1,0 +1,9 @@
+name: Test
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Displaying event
+        run: echo $GITHUB_EVENT_PATH
