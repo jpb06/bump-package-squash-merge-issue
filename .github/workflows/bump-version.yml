@@ -1,0 +1,45 @@
+name: Testing bump-package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          access_token: ${{ github.token }}
+
+      - name: Check out repository code
+        uses: actions/checkout@v3
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: latest
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version-file: '.node-version'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'pnpm'
+
+      - name: Installing dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Bump package version
+        id: bumping-version
+        uses: jpb06/bump-package@v2.5.4
+        with:
+          major-keywords: BREAKING CHANGE
+          minor-keywords: feat,minor
+          patch-keywords: fix,chore
+          should-default-to-patch: true
