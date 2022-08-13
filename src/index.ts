@@ -1,2 +1,2 @@
-export const cool = true
+export const cool = false
 export const yolo = "yolo"
