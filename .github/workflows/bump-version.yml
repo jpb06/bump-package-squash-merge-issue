@@ -42,4 +42,3 @@ jobs:
           major-keywords: BREAKING CHANGE
           minor-keywords: feat,minor
           patch-keywords: fix,chore
-          should-default-to-patch: true
