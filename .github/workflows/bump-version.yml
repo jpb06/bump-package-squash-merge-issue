@@ -35,6 +35,9 @@ jobs:
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Displaying event
+        run: cat $GITHUB_EVENT_PATH
+
       - name: Bump package version
         id: bumping-version
         uses: jpb06/bump-package@v2.5.4
